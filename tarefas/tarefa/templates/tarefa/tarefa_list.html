@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <h2>Lista de tarefas</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Situação</th>
+                <th>Alterar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarefa in object_list %}
+                <tr>
+                    <td>{{ tarefa.descricao }}</td>
+                    <td>
+                        {% if tarefa.realizada %}
+                            <span class="badge badge-success">Realizada</span>
+                        {% else %}
+                            <span class="badge badge-warning">Pendente</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ tarefa.get_absolute_url }}" class="btn btn-sm btn-primary">
+                            Alterar
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ tarefa.get_delete_url }}" class="btn btn-sm btn-danger">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% bootstrap_pagination page_obj %}
+{% endblock %}
