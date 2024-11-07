@@ -1,0 +1,1 @@
+"Catar em algum lugar pq perdi tudo, nessa merda"
